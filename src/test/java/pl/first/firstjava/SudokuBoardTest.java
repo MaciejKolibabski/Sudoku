@@ -25,7 +25,7 @@ public class SudokuBoardTest {
         System.out.println("Zainicjowane samymi zerami");
         sudoku.show();
 
-        // we try resolution
+
         if (sudoku.fillBoard()) {
             System.out.println("Po wykonaniu algorytmu");
             sudoku.show();
@@ -55,6 +55,8 @@ public class SudokuBoardTest {
             }
             assertEquals(45, suma);
         }
+
+
 
         //małekwadraty
 
