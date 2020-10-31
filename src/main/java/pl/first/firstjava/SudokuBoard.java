@@ -2,22 +2,32 @@ package pl.first.firstjava;
 
 import java.util.Random;
 
+
+
+
 public class SudokuBoard {
 
-    private int[][] board;
     public static final int size = 9;
-    final private SudokuSolver sudokuSolver;
-    public SudokuBoard(SudokuSolver sudokuSolver) {
-        this.board = new int[size][size];
-        this.sudokuSolver = sudokuSolver;
+    private int board[][]= new int[size][size];
 
-    }
+    private SudokuSolver sudokuSolver= new BacktrackingSudokuSolver();
+//     public SudokuBoard(SudokuSolver sudokuSolver, int [][] board)  {
+//        this.board = new int[size][size];
+//
+//        for(int i=0; i<size; i++){
+//            for(int j=0; j<size;j++){
+//                set(i,j,board[i][j]);
+//            }
+//        }
+//
+//    }
 
-    public void solveGame(){
 
+    public void solveGame() {
         sudokuSolver.solve(this);
 
     }
+
 
     public int get(int x, int y) {
         return board[x][y];
@@ -83,7 +93,7 @@ public class SudokuBoard {
 //        sudoku.show();
 //
 //
-//        if (sudoku.fillBoard()) {
+//        if (sudoku.solveGame();) {
 //            System.out.println("Po wykonaniu algorytmu");
 //            sudoku.show();
 //        } else {
