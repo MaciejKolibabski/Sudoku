@@ -7,6 +7,7 @@ public class SudokuBoard {
     private int[][] board;
     public static final int size = 9;
     final private SudokuSolver sudokuSolver;
+
     public SudokuBoard(SudokuSolver sudokuSolver) {
         this.board = new int[size][size];
         this.sudokuSolver = sudokuSolver;
