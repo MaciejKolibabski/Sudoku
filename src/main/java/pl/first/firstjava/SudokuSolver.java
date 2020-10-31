@@ -3,6 +3,5 @@ package pl.first.firstjava;
 
 public interface SudokuSolver {
 
-    void solve(SudokuBoard board);
-
+    public boolean solve(SudokuBoard sudokuBoard);
 }

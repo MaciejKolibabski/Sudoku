@@ -5,43 +5,40 @@ import java.util.Random;
 public class BacktrackingSudokuSolver implements SudokuSolver  {
 
 
+    @Override
+    public boolean solve(SudokuBoard sudokuBoard) {
+            Random rand = new Random();
+            for (int line = 0; line < 9; line++) {
+                for (int column = 0; column < 9; column++) {
 
-    private boolean fillboard(SudokuBoard board) {
-        Random rand = new Random();
-        for (int line = 0; line < 9; line++) {
-            for (int column = 0; column < 9; column++) {
-
-                if (board.get(line, column) == 0) {
-
-
-                    int R=rand.nextInt(9) + 1;
-                    for (int z = 1; z <= 9; z++) {
-                        int number=(R+z)%9+1;
+                    if (sudokuBoard.get(line, column) == 0) {
 
 
-                        if (board.checkOK(line, column, number)) {
+                        int ran = rand.nextInt(9) + 1;
+                        for (int z = 1; z <= 9; z++) {
+                            int number = (ran + z) % 9 + 1;
 
-                            board.set(line, column, number);
 
-                            if (fillboard(board)) {
-                                return true;
-                            } else {
-                                board.set(line, column, 0);
+                            if (sudokuBoard.checkOK(line, column, number)) {
+
+                                sudokuBoard.set(line, column, number);
+
+                                if (solve(sudokuBoard)) {
+                                    return true;
+                                } else {
+                                    sudokuBoard.set(line, column, 0);
+                                }
                             }
                         }
-                    }
 
-                    return false;
+                        return false;
+                    }
                 }
             }
+
+            return true;
         }
 
-        return true;
-    }
-
-    @Override
-    public void solve(SudokuBoard board) {
-        fillboard(board);
 
     }
-}
+
