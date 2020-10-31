@@ -11,16 +11,7 @@ public class SudokuBoard {
     private int board[][]= new int[size][size];
 
     private SudokuSolver sudokuSolver= new BacktrackingSudokuSolver();
-//     public SudokuBoard(SudokuSolver sudokuSolver, int [][] board)  {
-//        this.board = new int[size][size];
-//
-//        for(int i=0; i<size; i++){
-//            for(int j=0; j<size;j++){
-//                set(i,j,board[i][j]);
-//            }
-//        }
-//
-//    }
+
 
 
     public void solveGame() {
@@ -83,7 +74,7 @@ public class SudokuBoard {
         System.out.println();
     }
 
-
+//
 //    public static void main (String[] args) {
 //
 //
@@ -93,7 +84,7 @@ public class SudokuBoard {
 //        sudoku.show();
 //
 //
-//        if (sudoku.solveGame();) {
+//        if (sudoku.solveGame()) {
 //            System.out.println("Po wykonaniu algorytmu");
 //            sudoku.show();
 //        } else {
