@@ -6,20 +6,28 @@ public class SudokuBoard {
 
     private int[][] board;
     public static final int size = 9;
-    public SudokuBoard() {
+    final private SudokuSolver sudokuSolver;
+    public SudokuBoard(SudokuSolver sudokuSolver) {
         this.board = new int[size][size];
+        this.sudokuSolver = sudokuSolver;
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                this.board[i][j] = board[i][j];
-            }
-        }
     }
 
+    public void solveGame(){
 
+        sudokuSolver.solve(this);
 
+    }
 
-    private boolean checkLine(int line, int number) {
+    public int get(int x, int y) {
+        return board[x][y];
+    }
+
+    public void set(int x, int y, int value) {
+        this.board[x][y] = value;
+    }
+
+    boolean checkLine(int line, int number) {
         for (int i = 0; i < size; i++)
             if (board[line][i] == number)
                 return true;
@@ -27,8 +35,7 @@ public class SudokuBoard {
         return false;
     }
 
-
-    private boolean checkColumn(int column, int number) {
+    boolean checkColumn(int column, int number) {
         for (int i = 0; i < size; i++)
             if (board[i][column] == number)
                 return true;
@@ -36,8 +43,7 @@ public class SudokuBoard {
         return false;
     }
 
-
-    private boolean whichbox(int line, int column, int number) {
+    boolean whichbox(int line, int column, int number) {
         int l = line - line % 3;
         int c = column - column % 3;
 
@@ -50,42 +56,8 @@ public class SudokuBoard {
     }
 
 
-    private boolean checkOK(int line, int column, int number) {
+    boolean checkOK(int line, int column, int number) {
         return !checkLine(line, number)  &&  !checkColumn(column, number)  &&  !whichbox(line, column, number);
-    }
-
-    public boolean fillBoard() {
-        Random rand = new Random();
-        for (int line = 0; line < size; line++) {
-            for (int column = 0; column < size; column++) {
-
-                if (board[line][column] == 0) {
-
-
-
-                    int R=rand.nextInt(9) + 1;
-                    for (int z = 1; z <= size; z++) {
-                        int number=(R+z)%size+1;
-
-
-                        if (checkOK(line, column, number)) {
-
-                            board[line][column] = number;
-
-                            if (fillBoard()) {
-                                return true;
-                            } else {
-                                board[line][column] = 0;
-                            }
-                        }
-                    }
-
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
 
@@ -100,26 +72,24 @@ public class SudokuBoard {
 
         System.out.println();
     }
-    public int getField(int x,int y){
-        return board[y][x];
-    }
-
-    public static void main (String[] args) {
 
 
-
-        SudokuBoard sudoku = new SudokuBoard();
-        System.out.println("Zainicjowane samymi zerami");
-        sudoku.show();
-
-
-        if (sudoku.fillBoard()) {
-            System.out.println("Po wykonaniu algorytmu");
-            sudoku.show();
-        } else {
-            System.out.println("Błąd !!!");
-        }
-    }
+//    public static void main (String[] args) {
+//
+//
+//
+//        SudokuBoard sudoku = new SudokuBoard();
+//        System.out.println("Zainicjowane samymi zerami");
+//        sudoku.show();
+//
+//
+//        if (sudoku.fillBoard()) {
+//            System.out.println("Po wykonaniu algorytmu");
+//            sudoku.show();
+//        } else {
+//            System.out.println("Błąd !!!");
+//        }
+//    }
 
 
 }

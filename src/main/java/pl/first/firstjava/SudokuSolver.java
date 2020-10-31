@@ -1,6 +1,8 @@
 package pl.first.firstjava;
 
 
-public class SudokuSolver {
+public interface SudokuSolver {
+
+    void solve(SudokuBoard board);
 
 }
