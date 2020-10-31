@@ -14,7 +14,7 @@ public class SudokuBoardTest {
     @BeforeEach
     public void setUp() {
         sudokuBoard = new SudokuBoard();
-        sudokuBoard.fillBoard();
+        sudokuBoard.solveGame();
     }
 
     @RepeatedTest(2)
