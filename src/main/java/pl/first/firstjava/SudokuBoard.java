@@ -8,7 +8,7 @@ import java.util.Random;
 public class SudokuBoard {
 
     public static final int size = 9;
-    private int board[][]= new int[size][size];
+    private int board[][] = new int[size][size];
 
     private SudokuSolver sudokuSolver= new BacktrackingSudokuSolver();
 
@@ -74,23 +74,23 @@ public class SudokuBoard {
         System.out.println();
     }
 
-//
-//    public static void main (String[] args) {
-//
-//
-//
-//        SudokuBoard sudoku = new SudokuBoard();
-//        System.out.println("Zainicjowane samymi zerami");
-//        sudoku.show();
-//
-//
-//        if (sudoku.solveGame()) {
-//            System.out.println("Po wykonaniu algorytmu");
-//            sudoku.show();
-//        } else {
-//            System.out.println("Błąd !!!");
-//        }
-//    }
+
+    public static void main (String[] args) {
+
+
+
+        SudokuBoard sudoku = new SudokuBoard();
+        System.out.println("Zainicjowane samymi zerami");
+        sudoku.show();
+
+
+        if (sudoku.sudokuSolver.solve(sudoku)) {
+            System.out.println("Po wykonaniu algorytmu");
+            sudoku.show();
+        } else {
+            System.out.println("Błąd !!!");
+        }
+    }
 
 
 }

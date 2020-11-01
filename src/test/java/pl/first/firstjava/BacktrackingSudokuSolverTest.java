@@ -9,17 +9,17 @@ public class BacktrackingSudokuSolverTest {
     private SudokuSolver sudokuSolver;
     private BacktrackingSudokuSolver solver;
 
-    final private int[][] solveboard={
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-    };
+//    final private int[][] solveboard={
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//            {0,0,0,0,0,0,0,0,0},
+//    };
 
 
     @BeforeEach
@@ -38,7 +38,7 @@ public class BacktrackingSudokuSolverTest {
 //        sudoku.show();
 //
 //
-//        if (sudoku.solveGame();) {
+//        if () {
 //            System.out.println("Po wykonaniu algorytmu");
 //            sudoku.show();
 //        } else {
@@ -49,7 +49,7 @@ public class BacktrackingSudokuSolverTest {
 
     @Test
     public void testfillBoard()  {
-//        SudokuBoard sudokuBoard = new SudokuBoard(sudokuSolver, solveboard);
+
         sudokuBoard.solveGame();
         //rzędy
         for (int i = 0; i < 9; i++) {
@@ -91,8 +91,7 @@ public class BacktrackingSudokuSolverTest {
    // powtarzalnośccyferekwsudoku
     @Test
     public void testRandom() {
-//        SudokuBoard Test1 = new SudokuBoard(sudokuSolver, solveboard);
-//        SudokuBoard Test2 = new SudokuBoard(sudokuSolver, solveboard);
+
         SudokuBoard Test1= new SudokuBoard();
         SudokuBoard Test2= new SudokuBoard();
 
