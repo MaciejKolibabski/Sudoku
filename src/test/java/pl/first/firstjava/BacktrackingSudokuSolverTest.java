@@ -9,17 +9,6 @@ public class BacktrackingSudokuSolverTest {
     private SudokuSolver sudokuSolver;
     private BacktrackingSudokuSolver solver;
 
-//    final private int[][] solveboard={
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//            {0,0,0,0,0,0,0,0,0},
-//    };
 
 
     @BeforeEach
@@ -28,6 +17,18 @@ public class BacktrackingSudokuSolverTest {
        sudokuBoard = new SudokuBoard();
         sudokuBoard.solveGame();
     }
+
+//    public void show() {
+//        for (int i = 0; i < size; i++) {
+//            for (int j = 0; j < size; j++) {
+//                System.out.print(" " + board[i][j]);
+//            }
+//
+//            System.out.println();
+//        }
+//
+//        System.out.println();
+//    }
 
 //    @RepeatedTest(2)
 //    public void MainTest() {
@@ -39,6 +40,23 @@ public class BacktrackingSudokuSolverTest {
 //
 //
 //        if () {
+//            System.out.println("Po wykonaniu algorytmu");
+//            sudoku.show();
+//        } else {
+//            System.out.println("Błąd !!!");
+//        }
+//    }
+
+//    public static void main (String[] args) {
+//
+//
+//
+//        SudokuBoard sudoku = new SudokuBoard();
+//        System.out.println("Zainicjowane samymi zerami");
+//        sudoku.show();
+//
+//
+//        if (sudoku.sudokuSolver.solve(sudoku)) {
 //            System.out.println("Po wykonaniu algorytmu");
 //            sudoku.show();
 //        } else {

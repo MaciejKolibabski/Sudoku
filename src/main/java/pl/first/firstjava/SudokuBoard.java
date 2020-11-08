@@ -1,17 +1,24 @@
 package pl.first.firstjava;
 
-import java.util.Random;
-
-
-
 
 public class SudokuBoard {
 
     public static final int size = 9;
-    private int board[][] = new int[size][size];
+    //private int[][] board = new int[size][size];
+    private SudokuField[][] board = new SudokuField[size][size];
 
-    private SudokuSolver sudokuSolver= new BacktrackingSudokuSolver();
+    {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j]= new SudokuField();
 
+            }
+
+        }
+    }
+
+
+    private SudokuSolver sudokuSolver = new BacktrackingSudokuSolver();
 
 
     public void solveGame() {
@@ -19,53 +26,103 @@ public class SudokuBoard {
 
     }
 
+///////////////////////x - kolumny
+///////////////////////y- wiersze
+
 
     public int get(int x, int y) {
-        return board[x][y];
+        return board[y][x].getFieldValue();
     }
 
     public void set(int x, int y, int value) {
-        this.board[x][y] = value;
+        this.board[y][x].setFieldValue(value);
     }
 
-    boolean checkLine(int line, int number) {
-        for (int i = 0; i < size; i++)
-            if (board[line][i] == number)
-                return true;
-
-        return false;
-    }
-
-    boolean checkColumn(int column, int number) {
-        for (int i = 0; i < size; i++)
-            if (board[i][column] == number)
-                return true;
-
-        return false;
-    }
-
-    boolean whichbox(int line, int column, int number) {
-        int l = line - line % 3;
-        int c = column - column % 3;
-
-        for (int i = l; i < l + 3; i++)
-            for (int j = c; j < c + 3; j++)
-                if (board[i][j] == number)
-                    return true;
-
-        return false;
+    public SudokuRow getRow(int y){
+        SudokuRow row = new SudokuRow(board[y]);
+        return row;
     }
 
 
-    boolean checkOK(int line, int column, int number) {
-        return !checkLine(line, number)  &&  !checkColumn(column, number)  &&  !whichbox(line, column, number);
+    public SudokuBox getBox(int y, int x){
+        SudokuBox box = new SudokuBox(board[y]);
+       return box;
+
     }
+
+
+    public SudokuColumn getColumn(int x){
+        SudokuField [] field  = new SudokuField[9];
+        for(int i=0; i<9; i++)
+        {
+            field[i]= new SudokuField(get(x,i));
+        }
+        SudokuColumn column = new SudokuColumn(field);
+        return column;
+    }
+
+
+//
+//    boolean checkLine(int line, int number) {
+//        for (int i = 0; i < size; i++) {
+//            if (board[line][i] == number) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
+//    boolean checkColumn(int column, int number) {
+//        for (int i = 0; i < size; i++) {
+//            if (board[i][column] == number) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+//
+//    boolean whichbox(int line, int column, int number) {
+//        int l = line - line % 3;
+//        int c = column - column % 3;
+//
+//        for (int i = l; i < l + 3; i++) {
+//            for (int j = c; j < c + 3; j++) {
+//                if (board[i][j] == number) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
+
+
+
+    private boolean checkBoard() {
+        for (int i = 0; i < 9; i++) {
+            if (!(getColumn(i).verify()&& getRow(i).verify())){
+                return false;
+            }
+        }
+
+//        for (int i = 0; i < 9; i+=3) {
+//            for (int j = 0; j < 9; j+=3) {
+//                if(!(getBox(i,j).verify())){
+//                    return false;
+//                }
+//            }
+//        }
+        return true;
+    }
+    public boolean checkOK(int line, int column, int number) {
+        return checkBoard();
+    }
+
 
 
     public void show() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                System.out.print(" " + board[i][j]);
+                System.out.print(" " + board[i][j].getFieldValue());
             }
 
             System.out.println();
@@ -73,7 +130,6 @@ public class SudokuBoard {
 
         System.out.println();
     }
-
 
     public static void main (String[] args) {
 
@@ -91,7 +147,6 @@ public class SudokuBoard {
             System.out.println("Błąd !!!");
         }
     }
-
 
 }
 
