@@ -13,10 +13,12 @@ public class SudokuField {
     }
 
     public SudokuField(int value) {
+
         this.value = value;
     }
 
     public int getFieldValue() {
+
         return this.value;
     }
 

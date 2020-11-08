@@ -2,6 +2,8 @@ package pl.first.firstjava;
 
 import java.util.ArrayList;
 
+//SudokuRCB - dodatkowa klasa która łączy klasy SudokuRow/Column/Box - R-Row, C-Column, B-Box
+
 public abstract class SudokuRCB {
 
     protected SudokuField[] fields;
@@ -18,8 +20,7 @@ public abstract class SudokuRCB {
 
     public boolean verify() {
         ArrayList<Integer> allFields = new ArrayList<>();
-        for (SudokuField field : fields
-        ) {
+        for (SudokuField field : fields ) {
             if (field.getFieldValue() != 0) {
                 allFields.add(field.getFieldValue());
             }
@@ -32,9 +33,8 @@ public abstract class SudokuRCB {
                 noDuplicates.add(value);
             }
         }
-
         return noDuplicates.size() == allFields.size();
-    }
+        }
 
 
     public SudokuRCB tryValue(int value) {
