@@ -46,7 +46,7 @@ public class SudokuBoard {
         SudokuField [] field  = new SudokuField[9];
         for(int i=0; i<9; i++)
         {
-            field[i]= new SudokuField(get(y,i));
+            field[i]= new SudokuField(get(y, i));
         }
         SudokuRow row = new SudokuRow(field);
         return row;
