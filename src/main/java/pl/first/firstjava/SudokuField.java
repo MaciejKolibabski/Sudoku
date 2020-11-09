@@ -8,13 +8,13 @@ public class SudokuField {
 
     }
 
-    public SudokuField(SudokuField sudokuField) {
-        this.value= sudokuField.getFieldValue();
-    }
-
     public SudokuField(int value) {
 
         this.value = value;
+    }
+
+    public SudokuField(SudokuField sudokuField) {
+        this.value = sudokuField.getFieldValue();
     }
 
     public int getFieldValue() {
@@ -24,8 +24,7 @@ public class SudokuField {
 
     public void setFieldValue(int value) {
         if (value < 0 || value > 9) {
-            System.out.println("Ma być z przedziału <1,9>");
-            return ;
+            System.out.println("Must be <1;9>");
         }
         this.value = value;
     }

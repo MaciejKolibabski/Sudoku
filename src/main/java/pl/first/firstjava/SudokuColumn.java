@@ -1,7 +1,6 @@
 package pl.first.firstjava;
 
-public class SudokuColumn  extends SudokuRCB{
-
+public class SudokuColumn extends SudokuRcb {
 
     public SudokuColumn(SudokuField[] fields) {
         super(fields);

@@ -10,7 +10,7 @@ public class SudokuBoard {
     {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                board[i][j]= new SudokuField();
+                board[i][j] = new SudokuField();
 
             }
 
@@ -25,9 +25,6 @@ public class SudokuBoard {
 
     }
 
-///////////////////////x - kolumny
-///////////////////////y- wiersze
-
 
     public int get(int x, int y) {
 
@@ -40,26 +37,23 @@ public class SudokuBoard {
     }
 
 
-    public SudokuRow getRow(int y){
-//        SudokuRow row = new SudokuRow(board[y]);
-//        return row;
-        SudokuField [] field  = new SudokuField[9];
-        for(int i=0; i<9; i++)
-        {
-            field[i]= new SudokuField(get(y, i));
+    public SudokuRow getRow(int y) {
+        SudokuField [] field = new SudokuField[9];
+        for (int i = 0; i < 9; i++) {
+            field[i] = new SudokuField(get(y,i));
         }
         SudokuRow row = new SudokuRow(field);
         return row;
     }
 
 
-    public SudokuBox getBox(int x, int y){
+    public SudokuBox getBox(int x, int y) {
         SudokuField [] box = new SudokuField[9];
         int l = y - y % 3;
         int c = x - x % 3;
-        int index =0;
-        for (int i = l; i < l+3; i++) {
-            for (int j = c; j < c+3; j++) {
+        int index = 0;
+        for (int i = l; i < l + 3; i++) {
+            for (int j = c; j < c + 3; j++) {
                 box[index++] = new SudokuField(board[i][j]);
             }
         }
@@ -68,62 +62,61 @@ public class SudokuBoard {
 
 
 
-    public SudokuColumn getColumn(int x){
-        SudokuField [] field  = new SudokuField[9];
-        for(int i=0; i<9; i++)
-        {
-            field[i]= new SudokuField(get(i,x));
+    public SudokuColumn getColumn(int x) {
+        SudokuField [] field = new SudokuField[9];
+        for (int i = 0; i < 9; i++) {
+            field[i] = new SudokuField(get(i,x));
         }
         SudokuColumn column = new SudokuColumn(field);
         return column;
     }
 
 
-//
-//    boolean checkLine(int line, int number) {
-//        for (int i = 0; i < size; i++) {
-//            if (board[line][i] == number) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    boolean checkColumn(int column, int number) {
-//        for (int i = 0; i < size; i++) {
-//            if (board[i][column] == number) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    boolean whichbox(int line, int column, int number) {
-//        int l = line - line % 3;
-//        int c = column - column % 3;
-//
-//        for (int i = l; i < l + 3; i++) {
-//            for (int j = c; j < c + 3; j++) {
-//                if (board[i][j] == number) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    //
+    //    boolean checkLine(int line, int number) {
+    //        for (int i = 0; i < size; i++) {
+    //            if (board[line][i] == number) {
+    //                return true;
+    //            }
+    //        }
+    //        return false;
+    //    }
+    //
+    //    boolean checkColumn(int column, int number) {
+    //        for (int i = 0; i < size; i++) {
+    //            if (board[i][column] == number) {
+    //                return true;
+    //            }
+    //        }
+    //        return false;
+    //    }
+    //
+    //    boolean whichbox(int line, int column, int number) {
+    //        int l = line - line % 3;
+    //        int c = column - column % 3;
+    //
+    //        for (int i = l; i < l + 3; i++) {
+    //            for (int j = c; j < c + 3; j++) {
+    //                if (board[i][j] == number) {
+    //                    return true;
+    //                }
+    //            }
+    //        }
+    //        return false;
+    //  }
 
 
 
     private boolean checkBoard() {
         for (int i = 0; i < 9; i++) {
-            if (!(getColumn(i).verify() && getRow(i).verify())){
+            if (!(getColumn(i).verify() && getRow(i).verify())) {
                 return false;
             }
         }
 
-        for (int i = 0; i < 9; i+=3) {
-            for (int j = 0; j < 9; j+=3) {
-                if(!(getBox(i,j).verify())){
+        for (int i = 0; i < 9; i += 3) {
+            for (int j = 0; j < 9; j += 3) {
+                if (!(getBox(i,j).verify())) {
                     return false;
                 }
             }
@@ -133,11 +126,10 @@ public class SudokuBoard {
     }
 
     public boolean checkOK(int y, int x, int number) {
-        if (getRow(y).tryValue(number).verify()){
-            if(getColumn(x).tryValue(number).verify()){
-                if(getBox(x,y).tryValue(number).verify())
-                {
-                    return true;
+        if (getRow(y).tryValue(number).verify() && checkBoard()) {
+            if (getColumn(x).tryValue(number).verify()) {
+                if (getBox(x,y).tryValue(number).verify()) {
+                        return true;
                 }
             }
 
@@ -147,34 +139,34 @@ public class SudokuBoard {
 
 
 
-    public void show() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(" " + board[i][j].getFieldValue());
-            }
+    //    public void show() {
+    //        for (int i = 0; i < size; i++) {
+    //            for (int j = 0; j < size; j++) {
+    //                System.out.print(" " + board[i][j].getFieldValue());
+    //            }
+    //
+    //            System.out.println();
+    //        }
+    //
+    //        System.out.println();
+    //    }
 
-            System.out.println();
-        }
-
-        System.out.println();
-    }
-
-    public static void main (String[] args) {
-
-
-
-        SudokuBoard sudoku = new SudokuBoard();
-        System.out.println("Zainicjowane samymi zerami");
-        sudoku.show();
-
-
-        if (sudoku.sudokuSolver.solve(sudoku)) {
-            System.out.println("Po wykonaniu algorytmu");
-            sudoku.show();
-        } else {
-            System.out.println("Błąd !!!");
-        }
-    }
+    //    public static void main (String[] args) {
+    //
+    //
+    //
+    //        SudokuBoard sudoku = new SudokuBoard();
+    //        System.out.println("Zainicjowane samymi zerami");
+    //        sudoku.show();
+    //
+    //
+    //        if (sudoku.sudokuSolver.solve(sudoku)) {
+    //            System.out.println("Po wykonaniu algorytmu");
+    //            sudoku.show();
+    //        } else {
+    //            System.out.println("Błąd !!!");
+    //        }
+    //  }
 
 }
 
