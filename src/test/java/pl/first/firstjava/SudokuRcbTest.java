@@ -20,6 +20,7 @@ public class SudokuRcbTest {
                 new SudokuField(9)));
         assertTrue(sudokuRow.verify());
     }
+
     @Test
     public void verifyTestniepoprawny() {
         SudokuRow sudokuRow = new SudokuRow(Arrays.asList(

@@ -3,7 +3,7 @@ package pl.first.firstjava;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SudokuFieldTest {
     private SudokuField sudokuField;
@@ -21,6 +21,12 @@ public class SudokuFieldTest {
     public void setFieldValueTest() {
         sudokuField.setFieldValue(2);
         assertEquals(sudokuField.getFieldValue(), 2);
+    }
+
+    @Test
+    public void setBadFieldValueTest() {
+        sudokuField.setFieldValue(99);
+        assertNotEquals(sudokuField.getFieldValue(), 5);
     }
 
 
