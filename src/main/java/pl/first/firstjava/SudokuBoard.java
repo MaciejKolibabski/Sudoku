@@ -12,15 +12,13 @@ public class SudokuBoard {
     private List<List<SudokuField>> board;
 
     public SudokuBoard() {
-        //PRZYPISYWANIE DO REFERENCJI PIERSZEGO WYMIARU MACIERZY
+
         board = Arrays.asList(new List[9]);
 
-        //PRZYPISYWANIE DRUGIEGO WYMIARU MACIERZY
         for (int i = 0; i < 9; i++) {
             board.set(i, Arrays.asList(new SudokuField[9]));
         }
 
-        //ZMIANA ZAWARTOSCI LISTY Z NULL NA OBIEKTY SudokuField
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 this.board.get(i).set(j, new SudokuField());
