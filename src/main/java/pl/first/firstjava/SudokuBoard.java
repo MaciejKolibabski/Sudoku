@@ -80,7 +80,7 @@ public class SudokuBoard {
     }
 
 
-    //
+
     //    boolean checkLine(int line, int number) {
     //        for (int i = 0; i < size; i++) {
     //            if (board[line][i] == number) {
