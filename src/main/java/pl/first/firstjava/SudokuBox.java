@@ -1,8 +1,10 @@
 package pl.first.firstjava;
 
+import java.util.List;
+
 public class SudokuBox extends SudokuRcb {
 
-    public SudokuBox(SudokuField[] fields) {
+    public SudokuBox(List<SudokuField> fields) {
         super(fields);
     }
 }

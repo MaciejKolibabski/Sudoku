@@ -1,24 +1,34 @@
 package pl.first.firstjava;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SudokuBoard {
 
     public static final int size = 9;
     //private int[][] board = new int[size][size];
-    private SudokuField[][] board = new SudokuField[size][size];
+    private List<List<SudokuField>> board;
 
-    {
+    public SudokuBoard() {
+        //PRZYPISYWANIE DO REFERENCJI PIERSZEGO WYMIARU MACIERZY
+        board = Arrays.asList(new List[9]);
+
+        //PRZYPISYWANIE DRUGIEGO WYMIARU MACIERZY
+        for (int i = 0; i < 9; i++) {
+            board.set(i, Arrays.asList(new SudokuField[9]));
+        }
+
+        //ZMIANA ZAWARTOSCI LISTY Z NULL NA OBIEKTY SudokuField
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                board[i][j] = new SudokuField();
-
+                this.board.get(i).set(j, new SudokuField());
             }
-
         }
     }
 
     private SudokuSolver sudokuSolver = new BacktrackingSudokuSolver();
-
 
     public void solveGame() {
         sudokuSolver.solve(this);
@@ -28,19 +38,19 @@ public class SudokuBoard {
 
     public int get(int x, int y) {
 
-        return board[y][x].getFieldValue();
+        return board.get(y).get(x).getFieldValue();
     }
 
     public void set(int x, int y, int value) {
 
-        this.board[y][x].setFieldValue(value);
+        this.board.get(y).get(x).setFieldValue(value);
     }
 
 
     public SudokuRow getRow(int y) {
-        SudokuField [] field = new SudokuField[9];
+        List<SudokuField> field = Arrays.asList(new SudokuField[9]);
         for (int i = 0; i < 9; i++) {
-            field[i] = new SudokuField(get(y,i));
+            field.set(i, new SudokuField(get(y, i)));
         }
         SudokuRow row = new SudokuRow(field);
         return row;
@@ -48,13 +58,13 @@ public class SudokuBoard {
 
 
     public SudokuBox getBox(int x, int y) {
-        SudokuField [] box = new SudokuField[9];
+        List<SudokuField> box = Arrays.asList(new SudokuField[9]);
         int l = y - y % 3;
         int c = x - x % 3;
         int index = 0;
         for (int i = l; i < l + 3; i++) {
             for (int j = c; j < c + 3; j++) {
-                box[index++] = new SudokuField(board[i][j]);
+                box.set(index++, new SudokuField(board.get(i).get(j)));
             }
         }
         return new SudokuBox(box);
@@ -63,9 +73,9 @@ public class SudokuBoard {
 
 
     public SudokuColumn getColumn(int x) {
-        SudokuField [] field = new SudokuField[9];
+        List<SudokuField> field = Arrays.asList(new SudokuField[9]);
         for (int i = 0; i < 9; i++) {
-            field[i] = new SudokuField(get(i,x));
+            field.set(i, new SudokuField(get(i, x)));
         }
         SudokuColumn column = new SudokuColumn(field);
         return column;
@@ -136,7 +146,6 @@ public class SudokuBoard {
         }
         return false;
     }
-
 
 
     //    public void show() {

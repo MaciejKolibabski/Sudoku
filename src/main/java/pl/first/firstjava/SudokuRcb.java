@@ -1,19 +1,23 @@
 package pl.first.firstjava;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 //SudokuRCB - dodatkowa klasa która łączy klasy SudokuRow/Column/Box - R-Row, C-Column, B-Box
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+
 
 public class SudokuRcb {
 
-    protected SudokuField[] fields;
+    protected List<SudokuField> fields;
 
-    public SudokuRcb(SudokuField[] fields) {
-        this.fields = new SudokuField[9];
+    public SudokuRcb(List<SudokuField> fields) {
+        this.fields = Arrays.asList(new SudokuField[9]);
         for (int i = 0; i < 9; i++) {
-            this.fields[i] = new SudokuField(fields[i].getFieldValue());
+            this.fields.set(i, new SudokuField(fields.get(i).getFieldValue()));
         }
     }
 
@@ -32,8 +36,8 @@ public class SudokuRcb {
 
     public SudokuRcb tryValue(int value) {
         for (int i = 0; i < 9; i++) {
-            if (fields[i].getFieldValue() == 0) {
-                fields[i].setFieldValue(value);
+            if (fields.get(i).getFieldValue() == 0) {
+                fields.get(i).setFieldValue(value);
                 return this;
             }
         }
