@@ -146,36 +146,38 @@ public class SudokuBoard {
     }
 
 
-//        public void show() {
-//            for (int i = 0; i < size; i++) {
-//                for (int j = 0; j < size; j++) {
-//                    System.out.print(" " + board.get(i).get(j).getFieldValue());
-//                }
-//
-//                System.out.println();
-//            }
-//
-//            System.out.println();
-//        }
-//
-//        public static void main (String[] args) {
-//
-//
-//
-//            SudokuBoard sudoku = new SudokuBoard();
-//            System.out.println("Zainicjowane samymi zerami");
-//            sudoku.show();
-//
-//
-//            if (sudoku.sudokuSolver.solve(sudoku)) {
-//                System.out.println("Po wykonaniu algorytmu");
-//                sudoku.show();
-//            } else {
-//                System.out.println("Błąd !!!");
-//            }
-//      }
+    //            public void show() {
+    //                for (int i = 0; i < size; i++) {
+    //                    for (int j = 0; j < size; j++) {
+    //                        System.out.print(" " + board.get(i).get(j).getFieldValue());
+    //                    }
+    //
+    //                    System.out.println();
+    //                }
+    //
+    //                System.out.println();
+    //            }
+    //
+    //            public static void main (String[] args) {
+    //
+    //
+    //
+    //                SudokuBoard sudoku = new SudokuBoard();
+    //                System.out.println("Zainicjowane samymi zerami");
+    //                sudoku.show();
+    //
+    //
+    //                if (sudoku.sudokuSolver.solve(sudoku)) {
+    //                    System.out.println("Po wykonaniu algorytmu");
+    //                    sudoku.show();
+    //                } else {
+    //                    System.out.println("Błąd !!!");
+    //                }
+    //          }
 
 }
+
+
 
 
 

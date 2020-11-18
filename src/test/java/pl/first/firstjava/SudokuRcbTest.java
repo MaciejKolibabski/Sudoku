@@ -2,6 +2,7 @@ package pl.first.firstjava;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +20,7 @@ public class SudokuRcbTest {
                 new SudokuField(8),
                 new SudokuField(9)));
         assertTrue(sudokuRow.verify());
+        //List.of(new SudokuField());
     }
 
     @Test

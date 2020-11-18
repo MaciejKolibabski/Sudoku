@@ -1,8 +1,8 @@
 package pl.first.firstjava;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SudokuBoardTest{
     private SudokuBoard sudokuBoard;
@@ -19,6 +19,7 @@ public class SudokuBoardTest{
         assertEquals(sudokuBoard.get(1,1),3);
 
     }
+
 
 }
 
