@@ -18,19 +18,11 @@ public class BacktrackingSudokuSolverTest {
         sudokuBoard.solveGame();
     }
 
-//    public void show() {
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                System.out.print(" " + board[i][j]);
-//            }
-//
-//            System.out.println();
-//        }
-//
-//        System.out.println();
-//    }
 
-//    @RepeatedTest(2)
+
+
+//        @RepeatedTest(2)
+
 //    public void MainTest() {
 //
 //
@@ -39,31 +31,13 @@ public class BacktrackingSudokuSolverTest {
 //        sudoku.show();
 //
 //
-//        if () {
+//        if (sudoku.solveGame()) {
 //            System.out.println("Po wykonaniu algorytmu");
 //            sudoku.show();
 //        } else {
 //            System.out.println("Błąd !!!");
 //        }
 //    }
-
-//    public static void main (String[] args) {
-//
-//
-//
-//        SudokuBoard sudoku = new SudokuBoard();
-//        System.out.println("Zainicjowane samymi zerami");
-//        sudoku.show();
-//
-//
-//        if (sudoku.sudokuSolver.solve(sudoku)) {
-//            System.out.println("Po wykonaniu algorytmu");
-//            sudoku.show();
-//        } else {
-//            System.out.println("Błąd !!!");
-//        }
-//    }
-
 
     @Test
     public void testfillBoard()  {
@@ -105,6 +79,7 @@ public class BacktrackingSudokuSolverTest {
         }
 
     }
+
 
    // powtarzalnośccyferekwsudoku
     @Test
