@@ -25,19 +25,19 @@ public class SudokuFieldTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
 
         assertNotNull(sudokuField.toString());
     }
 
     @Test
-    public void equalsTest(){
+    public void equalsTest() {
         sudokuField2 = new SudokuField();
         assertTrue(sudokuField.equals(sudokuField2) && sudokuField2.equals(sudokuField));
     }
 
     @Test
-    public void hashCodeTest(){
+    public void hashCodeTest() {
         sudokuField2 = new SudokuField();
         assertEquals(sudokuField.hashCode(), sudokuField2.hashCode());
     }

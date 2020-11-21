@@ -1,8 +1,7 @@
 package pl.first.firstjava;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.Objects;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SudokuField {
 
@@ -28,9 +27,13 @@ public class SudokuField {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         SudokuField that = (SudokuField) o;
 
