@@ -2,12 +2,11 @@ package pl.first.firstjava;
 
 
 //SudokuRCB - dodatkowa klasa która łączy klasy SudokuRow/Column/Box - R-Row, C-Column, B-Box
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.*;
 
 
 public class SudokuRcb {
@@ -44,8 +43,30 @@ public class SudokuRcb {
         return this;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
 
+        if (o == null || getClass() != o.getClass()) return false;
 
+        SudokuRcb sudokuRcb = (SudokuRcb) o;
 
+        return new EqualsBuilder()
+                .append(fields, sudokuRcb.fields)
+                .isEquals();
+    }
 
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(fields)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("fields", fields)
+                .toString();
+    }
 }

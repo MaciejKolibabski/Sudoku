@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SudokuFieldTest {
     private SudokuField sudokuField;
+    private SudokuField sudokuField2;
 
     @BeforeEach
     public void setUp() {
@@ -24,9 +25,21 @@ public class SudokuFieldTest {
     }
 
     @Test
-    public void setBadFieldValueTest() {
-        sudokuField.setFieldValue(99);
-        assertNotEquals(sudokuField.getFieldValue(), 5);
+    public void toStringTest(){
+
+        assertNotNull(sudokuField.toString());
+    }
+
+    @Test
+    public void equalsTest(){
+        sudokuField2 = new SudokuField();
+        assertTrue(sudokuField.equals(sudokuField2) && sudokuField2.equals(sudokuField));
+    }
+
+    @Test
+    public void hashCodeTest(){
+        sudokuField2 = new SudokuField();
+        assertEquals(sudokuField.hashCode(), sudokuField2.hashCode());
     }
 
 
