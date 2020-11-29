@@ -12,12 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FileSudokuBoardDaoTest  {
 
 
-
-    private Dao<SudokuBoard> fileSudokuBoardDao;
-    private SudokuBoard sudokuBoardSecond;
-
-
-
 @Test
     public void writeReadTest() {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
