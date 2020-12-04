@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FirstJava" />
+        <module name="Model" />
+        <module name="View" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FirstJava" target="14" />
+      <module name="Model" target="14" />
+      <module name="SudokuGame" target="14" />
+      <module name="View" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

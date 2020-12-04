@@ -3,9 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.cp.first</groupId>
-    <artifactId>FirstJava</artifactId>
+    <artifactId>SudokuGameProject</artifactId>
     <version>2.0</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>Model</module>
+        <module>View</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>00_${project.artifactId}-${project.version}</name>
 
@@ -137,31 +141,7 @@
         </plugins>
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.6.2</version>
-            <scope>test</scope>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

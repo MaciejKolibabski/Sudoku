@@ -3,13 +3,9 @@ package pl.first.firstjava;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.lang.RuntimeException;
-import pl.first.firstjava.SudokuBoard;
-
 
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {

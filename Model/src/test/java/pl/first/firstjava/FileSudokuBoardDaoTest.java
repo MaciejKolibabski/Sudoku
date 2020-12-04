@@ -2,11 +2,6 @@ package pl.first.firstjava;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.lang.RuntimeException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FileSudokuBoardDaoTest  {
