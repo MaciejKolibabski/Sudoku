@@ -1,5 +1,6 @@
 package pl.first.firstjava;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -10,7 +11,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
-public class SudokuRcb {
+public class SudokuRcb implements Serializable, Cloneable {
 
     protected List<SudokuField> fields;
 
