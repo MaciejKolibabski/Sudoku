@@ -8,8 +8,4 @@ public class SudokuRow extends SudokuRcb {
         super(fields);
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 }

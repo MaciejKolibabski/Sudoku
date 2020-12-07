@@ -75,4 +75,9 @@ public class SudokuRcb implements Serializable, Cloneable {
                 .append("fields", fields)
                 .toString();
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
