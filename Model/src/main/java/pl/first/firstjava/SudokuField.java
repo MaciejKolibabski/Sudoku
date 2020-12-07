@@ -3,7 +3,7 @@ package pl.first.firstjava;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuField implements Serializable {
+public class SudokuField implements Serializable, Cloneable, Comparable<SudokuField> {
 
     private int value;
 
@@ -63,4 +63,21 @@ public class SudokuField implements Serializable {
         this.value = value;
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        SudokuField sudokuField = new SudokuField();
+        sudokuField.value = this.value;
+        return sudokuField;
+    }
+
+    @Override
+    public int compareTo(SudokuField o) {
+        if (this.getFieldValue() == o.getFieldValue()) {
+            return 0;
+        } else if (this.getFieldValue() > o.getFieldValue()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

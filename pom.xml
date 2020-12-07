@@ -57,6 +57,14 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <configuration>
+                    <mainClass>App</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -91,6 +99,16 @@
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
                         <version>8.36</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-controls</artifactId>
+                        <version>11</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-fxml</artifactId>
+                        <version>11</version>
                     </dependency>
                 </dependencies>
             </plugin>

@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuBoard implements Serializable {
+public class SudokuBoard implements Serializable, Cloneable {
 
     public static final int size = 9;
     //private int[][] board = new int[size][size];
@@ -179,6 +179,19 @@ public class SudokuBoard implements Serializable {
                 .append("board", board)
                 .append("sudokuSolver", sudokuSolver)
                 .toString();
+    }
+
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        SudokuBoard sudokuBoard = new SudokuBoard();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                sudokuBoard.set(i, j, get(i, j));
+            }
+        }
+
+        return sudokuBoard;
     }
 
     //        public void show() {
