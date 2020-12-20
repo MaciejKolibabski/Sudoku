@@ -16,7 +16,6 @@ public class FileSudokuBoardDaoTest  {
         fileSudokuBoardDao = factory.getFileDao("fileName");
         fileSudokuBoardDao.write(sudokuBoard);
         sudokuBoardSecond = fileSudokuBoardDao.read();
-
         assertEquals(sudokuBoard, sudokuBoardSecond);
     }
 
