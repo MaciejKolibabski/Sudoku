@@ -80,4 +80,5 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
             return -1;
         }
     }
+
 }
