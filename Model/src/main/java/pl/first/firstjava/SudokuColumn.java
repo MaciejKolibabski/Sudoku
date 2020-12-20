@@ -7,4 +7,9 @@ public class SudokuColumn extends SudokuRcb {
     public SudokuColumn(List<SudokuField> fields) {
         super(fields);
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

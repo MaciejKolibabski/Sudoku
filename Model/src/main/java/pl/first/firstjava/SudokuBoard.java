@@ -190,6 +190,19 @@ public class SudokuBoard implements Serializable, Cloneable {
                 .toString();
     }
 
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        SudokuBoard sudokuBoard = new SudokuBoard();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                sudokuBoard.set(i, j, get(i, j));
+            }
+        }
+
+        return sudokuBoard;
+    }
+
     //        public void show() {
     //            for (int i = 0; i < size; i++) {
     //                for (int j = 0; j < size; j++) {
