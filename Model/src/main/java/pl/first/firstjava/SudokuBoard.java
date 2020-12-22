@@ -80,17 +80,17 @@ public class SudokuBoard implements Serializable, Cloneable {
         SudokuColumn column = new SudokuColumn(field);
         return column;
     }
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        SudokuBoard sudokuBoard = new SudokuBoard();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                sudokuBoard.set(i, j, get(i, j));
-            }
-        }
-
-        return sudokuBoard;
-    }
+    //    @Override
+    //    protected Object clone() throws CloneNotSupportedException {
+    //        SudokuBoard sudokuBoard = new SudokuBoard();
+    //        for (int i = 0; i < 9; i++) {
+    //            for (int j = 0; j < 9; j++) {
+    //                sudokuBoard.set(i, j, get(i, j));
+    //            }
+    //        }
+    //
+    //        return sudokuBoard;
+    //    }
 
 
     //
@@ -191,17 +191,17 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        SudokuBoard sudokuBoard = new SudokuBoard();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                sudokuBoard.set(i, j, get(i, j));
-            }
-        }
-
-        return sudokuBoard;
-    }
+    //    @Override
+    //    protected Object clone() throws CloneNotSupportedException {
+    //        SudokuBoard sudokuBoard = new SudokuBoard();
+    //        for (int i = 0; i < 9; i++) {
+    //            for (int j = 0; j < 9; j++) {
+    //                sudokuBoard.set(i, j, get(i, j));
+    //            }
+    //        }
+    //
+    //        return sudokuBoard;
+    //    }
 
     //        public void show() {
     //            for (int i = 0; i < size; i++) {
