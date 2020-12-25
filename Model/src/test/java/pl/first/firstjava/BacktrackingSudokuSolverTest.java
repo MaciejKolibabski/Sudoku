@@ -1,5 +1,6 @@
 package pl.first.firstjava;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,24 +20,24 @@ public class BacktrackingSudokuSolverTest {
 
 
 
-
-//        @RepeatedTest(2)
-
-//    public void MainTest() {
-//
-//
-//        SudokuBoard sudoku = new SudokuBoard();
-//        System.out.println("Zainicjowane samymi zerami");
-//        sudoku.show();
-//
-//
-//        if (sudoku.solveGame()) {
-//            System.out.println("Po wykonaniu algorytmu");
-//            sudoku.show();
-//        } else {
-//            System.out.println("Błąd !!!");
-//        }
-//    }
+    //
+    //        @RepeatedTest(2)
+    //
+    //    public void MainTest() {
+    //
+    //
+    //        SudokuBoard sudoku = new SudokuBoard();
+    //        System.out.println("Zainicjowane samymi zerami");
+    //        sudoku.show();
+    //
+    //
+    //        if (sudoku.solveGame()) {
+    //            System.out.println("Po wykonaniu algorytmu");
+    //            sudoku.show();
+    //        } else {
+    //            System.out.println("Błąd !!!");
+    //        }
+    //    }
 
     @Test
     public void testfillBoard()  {

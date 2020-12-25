@@ -13,6 +13,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     //private int[][] board = new int[size][size];
     private List<List<SudokuField>> board;
 
+
     public SudokuBoard() {
 
         board = Arrays.asList(new List[9]);
@@ -29,6 +30,9 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
     private SudokuSolver sudokuSolver = new BacktrackingSudokuSolver();
+
+
+
 
     public void solveGame() {
         sudokuSolver.solve(this);
@@ -191,6 +195,8 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
 
+
+
     //    @Override
     //    protected Object clone() throws CloneNotSupportedException {
     //        SudokuBoard sudokuBoard = new SudokuBoard();
@@ -203,35 +209,37 @@ public class SudokuBoard implements Serializable, Cloneable {
     //        return sudokuBoard;
     //    }
 
-    //        public void show() {
-    //            for (int i = 0; i < size; i++) {
-    //                for (int j = 0; j < size; j++) {
-    //                    System.out.print(" " + board[i][j].getFieldValue());
+    //            public void show() {
+    //                for (int i = 0; i < size; i++) {
+    //                    for (int j = 0; j < size; j++) {
+    //                        System.out.print(" " + board.get(i).get(j).getFieldValue());
+    //                    }
+    //
+    //                    System.out.println();
     //                }
     //
     //                System.out.println();
     //            }
     //
-    //            System.out.println();
-    //        }
-
-
-
-    //        public static void main (String[] args) {
     //
     //
-    //            SudokuBoard sudoku = new SudokuBoard();
-    //            System.out.println("Zainicjowane samymi zerami");
-    //            sudoku.show();
+    //            public static void main (String[] args) {
     //
     //
-    //            if (sudoku.sudokuSolver.solve(sudoku)) {
-    //                System.out.println("Po wykonaniu algorytmu");
+    //                SudokuBoard sudoku = new SudokuBoard();
+    //                System.out.println("Zainicjowane samymi zerami");
     //                sudoku.show();
-    //            } else {
-    //                System.out.println("Błąd !!!");
+    //
+    //
+    //                if (sudoku.sudokuSolver.solve(sudoku)) {
+    //                    System.out.println("Po wykonaniu algorytmu");
+    //                    sudoku.show();
+    //                } else {
+    //                    System.out.println("Błąd !!!");
+    //                }
+    //
     //            }
-    //      }
+    //
 
 }
 
