@@ -16,4 +16,9 @@
       <module name="View" target="14" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="View" options="--add-exports java.base/jdk.internal.jimage=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>
