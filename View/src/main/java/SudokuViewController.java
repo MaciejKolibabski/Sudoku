@@ -1,20 +1,12 @@
-import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import pl.first.firstjava.BacktrackingSudokuSolver;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
 
@@ -22,6 +14,7 @@ import pl.first.firstjava.SudokuField;
 public class SudokuViewController implements Initializable {
     private SudokuBoard board;
     public GridPane grid;
+    public int deleteFiedls;
 
 
     @Override
@@ -33,8 +26,7 @@ public class SudokuViewController implements Initializable {
     }
 
 
-    SudokuBoard initBoard() {
-
+    SudokuBoard fillBoard() {
 
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
@@ -49,33 +41,44 @@ public class SudokuViewController implements Initializable {
     }
 
 
-    public void loadSudokuBoard() {
-        initBoard();
+    public void showSudoku(int deleteFiedls) {
 
+        fillBoard();
+        deleteRandom(board,deleteFiedls);
 
-        Label[][] labels = new Label[9][9];
+        TextField[][] labels = new TextField[9][9];
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (board.get(i, j) != 0) {
-                    labels[i][j] = new Label(Integer.toString(board.get(i, j)));
+                    labels[i][j] = new TextField(Integer.toString(board.get(i, j)));
                 } else {
-                    labels[i][j] = new Label("");
+                    labels[i][j] = new TextField("");
                 }
 
                 labels[i][j].setAlignment(Pos.CENTER);
                 labels[i][j].setPrefHeight(100);
                 labels[i][j].setPrefWidth(100);
-                labels[i][j].setTextAlignment(TextAlignment.CENTER);
                 grid.add(labels[i][j], i, j);
+
             }
         }
         System.out.println(grid.getChildren());
 
 
     }
+
+    public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
+        Random rand = new Random();
+        while (deleteFiedls > 0) {
+            int x = rand.nextInt(9);
+            int y = rand.nextInt(9);
+            if (tab.get(x,y) != 0) {
+                tab.set(x, y, 0);
+                deleteFiedls--;
+            }
+        }
+        return tab;
+    }
 }
-
-
-
 

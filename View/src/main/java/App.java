@@ -18,7 +18,6 @@ public class App extends Application {
         primaryStage.setTitle("Sudoku");
         primaryStage.setScene(new Scene(root, 700, 700));
 
-
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
