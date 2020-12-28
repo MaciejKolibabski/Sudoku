@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
-public class SudokuRcb implements Serializable ,Cloneable{
+public class SudokuRcb implements Serializable, Cloneable {
 
     protected List<SudokuField> fields;
 
