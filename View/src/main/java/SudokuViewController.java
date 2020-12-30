@@ -1,12 +1,26 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.adapter.JavaBeanIntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
 
@@ -14,7 +28,8 @@ import pl.first.firstjava.SudokuField;
 public class SudokuViewController implements Initializable {
     private SudokuBoard board;
     public GridPane grid;
-    public int deleteFiedls;
+    private List<List<SudokuField>> fields;
+
 
 
     @Override
@@ -80,5 +95,53 @@ public class SudokuViewController implements Initializable {
         }
         return tab;
     }
+
+
+
+
+    public void readfromfile(ActionEvent actionEvent) {
+        FileChooser filechoose = new FileChooser();
+        File file = filechoose.showOpenDialog(new Stage());
+
+        try (FileInputStream fis = new FileInputStream(file);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            var sudoku = (SudokuBoard) ois.readObject();
+            fields = sudoku.getBoard();
+            System.out.println("Po zapisie " + fields);
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println("IOException is caught");
+        }
+
+
+
+    }
+
+    public void writetofile(ActionEvent actionEvent) {
+        System.out.println("Odczyt " + board);
+
+        FileChooser filechoose = new FileChooser();
+        File file = filechoose.showSaveDialog(new Stage());
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
+            oos.writeObject(board);
+
+        } catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+
+    }
+
+
+
+
+
+
+
+    //BINDING
+
+
 }
 

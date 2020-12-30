@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.first.firstjava.SudokuBoard;
@@ -24,8 +26,8 @@ public class MainViewController implements Initializable {
     public Button trudnyBtn;
     public Button sredniBtn;
     public Button latwyBtn;
-
-
+    public SudokuBoard board;
+    public List<List<SudokuField>> fields;
 
 
     @Override
@@ -63,5 +65,6 @@ public class MainViewController implements Initializable {
         stage.show();
         return stage;
     }
+
 
 }

@@ -42,14 +42,14 @@
         </GridPane>
     </center>
    <left>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Odczytaj z pliku " BorderPane.alignment="CENTER">
+      <Button fx:id="read" mnemonicParsing="false" onAction="#readfromfile" prefHeight="26.0" prefWidth="103.0" text="Odczytaj z pliku " BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="20.0" top="350.0" />
          </BorderPane.margin>
       </Button>
    </left>
    <bottom>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Zapisz do pliku " BorderPane.alignment="TOP_LEFT">
+      <Button fx:id="write" mnemonicParsing="false" onAction="#writetofile" prefHeight="26.0" prefWidth="103.0" text="Zapisz do pliku " BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" />
          </BorderPane.margin>
