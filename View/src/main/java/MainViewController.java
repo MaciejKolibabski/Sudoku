@@ -6,19 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
-import pl.first.firstjava.SudokuSolver;
 
 public class MainViewController implements Initializable {
 
@@ -28,6 +21,7 @@ public class MainViewController implements Initializable {
     public Button latwyBtn;
     public SudokuBoard board;
     public List<List<SudokuField>> fields;
+
 
 
     @Override
