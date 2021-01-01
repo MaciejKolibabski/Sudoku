@@ -8,24 +8,25 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.beans.property.adapter.JavaBeanIntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
-
 
 public class SudokuViewController implements Initializable {
     private SudokuBoard board;
     public GridPane grid;
     private List<List<SudokuField>> fields;
+    TextField[][] labels = new TextField[9][9];
 
 
 
@@ -59,7 +60,7 @@ public class SudokuViewController implements Initializable {
         fillBoard();
         deleteRandom(board,deleteFiedls);
 
-        TextField[][] labels = new TextField[9][9];
+
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -77,8 +78,7 @@ public class SudokuViewController implements Initializable {
             }
         }
         System.out.println(grid.getChildren());
-
-
+        bindToCurrentFields();
     }
 
     public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
@@ -95,7 +95,45 @@ public class SudokuViewController implements Initializable {
     }
 
 
+    private void bindToCurrentFields() {
+        class SudokuFieldStringConverter extends IntegerStringConverter {
+            @Override
+            public String toString(Integer value) {
+                if (value == 0) {
+                    return "";
+                }
+                return super.toString(value);
+            }
+        }
 
+        StringConverter converter = new SudokuFieldStringConverter();
+
+        for (int j = 0; j < 9; j++) {
+            for (int i = 0; i < 9; i++) {
+                var textField = labels[i][j];
+                try {
+                    JavaBeanIntegerPropertyBuilder builder =
+                            JavaBeanIntegerPropertyBuilder.create();
+                    JavaBeanIntegerProperty integerProperty =
+                            builder.bean(board.getToBindMethod(i,j)).name("fieldValue").build();
+                    textField.textProperty().bindBidirectional(integerProperty, converter);
+
+                    textField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+                        if (!newValue.matches("^\\d$") || newValue.equals("")) {
+                            textField.textProperty().set("");
+                            return;
+                        }
+
+                    });
+
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+    }
 
     public void readfromfile(ActionEvent actionEvent) {
         FileChooser filechoose = new FileChooser();
@@ -106,17 +144,21 @@ public class SudokuViewController implements Initializable {
 
             var board = (SudokuBoard) ois.readObject();
             fields = board.getBoard();
+
+            bindToCurrentFields();
+
             System.out.println("Po odczycie " + board);
         } catch (IOException | ClassNotFoundException ex) {
-            System.out.println("IOException is caught");
+            System.out.println("IOException");
         }
 
         TextField[][] labels = new TextField[9][9];
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (fields.get(j).get(i).getFieldValue()!= 0) {
-                    labels[i][j] = new TextField(Integer.toString((fields.get(j).get(i).getFieldValue())));
+                if (fields.get(j).get(i).getFieldValue() != 0) {
+                    labels[i][j] = new TextField(Integer.toString((
+                            fields.get(j).get(i).getFieldValue())));
                 } else {
                     labels[i][j] = new TextField("");
                 }
@@ -128,14 +170,11 @@ public class SudokuViewController implements Initializable {
 
             }
         }
-        System.out.println(grid.getChildren());
 
     }
 
-
-
-
     public void writetofile(ActionEvent actionEvent) {
+
         System.out.println("Zapis " + board);
 
         FileChooser filechoose = new FileChooser();
@@ -147,20 +186,12 @@ public class SudokuViewController implements Initializable {
             oos.writeObject(board);
 
         } catch (IOException ex) {
-            System.out.println("IOException is caught");
+            System.out.println("IOException");
         }
 
-    }
-
-
-    public Stage aktualizuj(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SudokuView.fxml"));
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(new Scene(loader.load()));
-        System.out.println(board);
-        stage.show();
-        return stage;
 
     }
+
+
 }
 

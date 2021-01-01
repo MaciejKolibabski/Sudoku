@@ -42,10 +42,18 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
 
+
     public int get(int x, int y) {
 
         return board.get(y).get(x).getFieldValue();
     }
+
+    public SudokuField getToBindMethod(int x, int y) {
+
+        return board.get(y).get(x);
+    }
+
+
 
     public void set(int x, int y, int value) {
 
@@ -138,7 +146,7 @@ public class SudokuBoard implements Serializable, Cloneable {
 
 
 
-    private boolean checkBoard() {
+    public boolean checkBoard() {
         for (int i = 0; i < 9; i++) {
             if (!(getColumn(i).verify() && getRow(i).verify())) {
                 return false;
