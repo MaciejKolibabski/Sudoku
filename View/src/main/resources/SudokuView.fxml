@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="663.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SudokuViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="722.0" style="-fx-background-color: #3b635d;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SudokuViewController">
     <center>
-        <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" prefHeight="448.0" prefWidth="426.0" style="-fx-background-color: #add7db;" BorderPane.alignment="CENTER">
+        <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" prefHeight="379.0" prefWidth="466.0" style="-fx-background-color: #add7db;" BorderPane.alignment="CENTER_LEFT">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,7 +40,7 @@
                 <Insets />
             </opaqueInsets>
             <BorderPane.margin>
-                <Insets bottom="40.0" left="140.0" right="20.0" top="10.0" />
+                <Insets bottom="40.0" left="140.0" right="40.0" top="20.0" />
             </BorderPane.margin>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -42,24 +48,45 @@
         </GridPane>
     </center>
    <left>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Odczytaj z pliku " BorderPane.alignment="CENTER">
+      <Button fx:id="safebtn" mnemonicParsing="false" onAction="#writetofile" prefHeight="26.0" prefWidth="100.0" text="%safe" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="20.0" top="350.0" />
+            <Insets left="20.0" top="300.0" />
          </BorderPane.margin>
+         <effect>
+            <Lighting diffuseConstant="2.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color blue="0.30103799700737" green="0.9184210300445557" red="0.8463930487632751" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
       </Button>
    </left>
    <bottom>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Zapisz do pliku " BorderPane.alignment="TOP_LEFT">
+      <Button fx:id="readbtn" mnemonicParsing="false" onAction="#readfromfile" prefHeight="26.0" prefWidth="103.0" text="%read" BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" />
+            <Insets bottom="50.0" left="20.0" />
          </BorderPane.margin>
+         <effect>
+            <Lighting diffuseConstant="2.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color blue="0.353767067193985" green="0.353767067193985" red="0.8342105150222778" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
       </Button>
    </bottom>
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SUDOKU: " BorderPane.alignment="TOP_LEFT">
-         <BorderPane.margin>
-            <Insets left="50.0" top="50.0" />
-         </BorderPane.margin>
-      </Text>
-   </top>
 </BorderPane>

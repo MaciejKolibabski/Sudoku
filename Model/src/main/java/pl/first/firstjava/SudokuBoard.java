@@ -1,6 +1,7 @@
 package pl.first.firstjava;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -12,6 +13,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     public static final int size = 9;
     //private int[][] board = new int[size][size];
     private List<List<SudokuField>> board;
+    SudokuSolver solver;
 
 
     public SudokuBoard() {
@@ -40,10 +42,18 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
 
+
     public int get(int x, int y) {
 
         return board.get(y).get(x).getFieldValue();
     }
+
+    public SudokuField getToBindMethod(int x, int y) {
+
+        return board.get(y).get(x);
+    }
+
+
 
     public void set(int x, int y, int value) {
 
@@ -58,6 +68,10 @@ public class SudokuBoard implements Serializable, Cloneable {
         }
         SudokuRow row = new SudokuRow(field);
         return row;
+    }
+
+    public List<List<SudokuField>> getBoard() {
+        return board;
     }
 
 
@@ -132,7 +146,7 @@ public class SudokuBoard implements Serializable, Cloneable {
 
 
 
-    private boolean checkBoard() {
+    public boolean checkBoard() {
         for (int i = 0; i < 9; i++) {
             if (!(getColumn(i).verify() && getRow(i).verify())) {
                 return false;
@@ -197,17 +211,27 @@ public class SudokuBoard implements Serializable, Cloneable {
 
 
 
-    //    @Override
-    //    protected Object clone() throws CloneNotSupportedException {
-    //        SudokuBoard sudokuBoard = new SudokuBoard();
-    //        for (int i = 0; i < 9; i++) {
-    //            for (int j = 0; j < 9; j++) {
-    //                sudokuBoard.set(i, j, get(i, j));
+
+    //        @Override
+    //        public Object clone() throws CloneNotSupportedException {
+    //            SudokuBoard copy = (SudokuBoard) super.clone();
+    //            copy.board = new SudokuField[9][9];
+    //            for (int i = 0; i < copy.board.length; i++) {
+    //                copy.board[i] = new SudokuField[copy.board.length];
+    //                for (int j = 0; j < 9; j++) {
+    //                    copy.board[i][j] = (SudokuField) this.board[i][j].clone();
+    //                }
     //            }
+    //            copy.solver = new BacktrackingSudokuSolver();
+    //            return copy;
     //        }
     //
-    //        return sudokuBoard;
-    //    }
+    //        public SudokuField[][] getBoardsudoku() {
+    //            return boardsudoku;
+    //        }
+
+
+
 
     //            public void show() {
     //                for (int i = 0; i < size; i++) {
@@ -240,6 +264,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     //
     //            }
     //
+
 
 }
 

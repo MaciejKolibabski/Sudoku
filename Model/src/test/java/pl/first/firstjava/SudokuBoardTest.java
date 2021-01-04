@@ -39,6 +39,8 @@ public class SudokuBoardTest{
         sudokuBoard2 = new SudokuBoard();
         assertEquals(sudokuBoard.hashCode(), sudokuBoard2.hashCode());
     }
+
+
 }
 
 

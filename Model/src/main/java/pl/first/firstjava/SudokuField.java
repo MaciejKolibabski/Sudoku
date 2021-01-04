@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SudokuField implements Serializable, Cloneable, Comparable<SudokuField> {
 
-    private int value;
+    private int fieldValue;
 
     public SudokuField() {
 
@@ -13,17 +13,19 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
 
     public SudokuField(int value) {
 
-        this.value = value;
+        this.fieldValue = value;
     }
 
     public SudokuField(SudokuField sudokuField) {
-        this.value = sudokuField.getFieldValue();
+        this.fieldValue = sudokuField.getFieldValue();
     }
 
     public int getFieldValue() {
 
-        return this.value;
+        return this.fieldValue;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -38,21 +40,21 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
         SudokuField that = (SudokuField) o;
 
         return new org.apache.commons.lang3.builder.EqualsBuilder()
-                .append(value, that.value)
+                .append(fieldValue, that.fieldValue)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
-                .append(value)
+                .append(fieldValue)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("value= ", value)
+                .append("value= ", fieldValue)
                 .toString();
     }
 
@@ -60,13 +62,13 @@ public class SudokuField implements Serializable, Cloneable, Comparable<SudokuFi
         if (value < 0 || value > 9) {
             System.out.println("Must be <1;9>");
         }
-        this.value = value;
+        this.fieldValue = value;
     }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
         SudokuField sudokuField = new SudokuField();
-        sudokuField.value = this.value;
+        sudokuField.fieldValue = this.fieldValue;
         return sudokuField;
     }
 
