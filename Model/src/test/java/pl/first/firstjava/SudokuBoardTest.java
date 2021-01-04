@@ -40,6 +40,23 @@ public class SudokuBoardTest{
         assertEquals(sudokuBoard.hashCode(), sudokuBoard2.hashCode());
     }
 
+    @Test
+    public void cloneTest() throws CloneNotSupportedException {
+        SudokuField[][] fields = new SudokuField[9][9];
+        for (int i = 0; i < fields.length; i++) {
+            for (int j = 0; j < fields[0].length; j++) {
+                fields[i][j] = new SudokuField();
+            }
+        }
+        SudokuBoard board = new SudokuBoard();
+        SudokuBoard board2 = (SudokuBoard) board.clone();
+        board.solveGame();
+        System.out.println(board.toString());
+        System.out.println(board2.toString());
+        board2.solveGame();
+        assertNotSame(board, board2);
+        assertNotSame(board.getColumn(1), board2.getColumn(1));
+    }
 
 }
 

@@ -23,11 +23,11 @@ import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
 
 public class SudokuViewController implements Initializable {
+
     private SudokuBoard board;
     public GridPane grid;
     private List<List<SudokuField>> fields;
     TextField[][] labels = new TextField[9][9];
-
 
 
 
@@ -176,7 +176,6 @@ public class SudokuViewController implements Initializable {
     public void writetofile(ActionEvent actionEvent) {
 
         System.out.println("Zapis " + board);
-
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showSaveDialog(new Stage());
 
@@ -188,8 +187,6 @@ public class SudokuViewController implements Initializable {
         } catch (IOException ex) {
             System.out.println("IOException");
         }
-
-
     }
 
 

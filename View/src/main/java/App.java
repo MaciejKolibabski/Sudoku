@@ -23,11 +23,10 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainView.fxml"), bundle );
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainView.fxml"), bundle);
         Parent root = loader.load();
         primaryStage.setTitle("Sudoku");
         primaryStage.setScene(new Scene(root, 700, 700));
-
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -36,7 +35,7 @@ public class App extends Application {
         }
         SudokuBoard board = new SudokuBoard();
         System.out.println(board.toString());
-        mainViewController=loader.getController();
+        mainViewController = loader.getController();
         mainViewController.initData(primaryStage);
         primaryStage.show();
     }
