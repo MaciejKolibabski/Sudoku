@@ -18,14 +18,14 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Maciej Kolibabski">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%autor1">
                <VBox.margin>
-                  <Insets left="250.0" top="80.0" />
+                  <Insets left="230.0" top="80.0" />
                </VBox.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="- Kacper Świąder">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%autor2">
                <VBox.margin>
-                  <Insets left="250.0" top="10.0" />
+                  <Insets left="230.0" top="10.0" />
                </VBox.margin>
             </Text>
          </children>
