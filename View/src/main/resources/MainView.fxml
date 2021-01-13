@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #386cfc;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainViewController">
     <center>
-        <VBox alignment="CENTER" prefHeight="487.0" prefWidth="610.0" spacing="30.0" style="-fx-background-color: #35657c;" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="498.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #35657c;" BorderPane.alignment="CENTER">
             <children>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%level">
@@ -65,13 +65,34 @@
                             </light>
                         </Lighting>
                     </effect></Button>
+            <Separator prefWidth="200.0" />
+            <Button fx:id="authorBtn" mnemonicParsing="false" onAction="#showAuthors" prefHeight="26.0" prefWidth="102.0" text="%autorzy">
+               <effect>
+                  <Reflection fraction="0.67" topOpacity="0.19">
+                     <input>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.7815789580345154" green="0.6209210753440857" blue="0.6209210753440857" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Reflection>
+               </effect>
+            </Button>
                 <Separator prefWidth="200.0" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%langchoice">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <HBox prefHeight="129.0" prefWidth="600.0">
+                <HBox prefHeight="105.0" prefWidth="600.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#englishlanguage" text="%english">
                             <HBox.margin>

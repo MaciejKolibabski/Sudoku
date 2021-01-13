@@ -19,6 +19,7 @@ public class MainViewController implements Initializable {
     public Button trudnyBtn;
     public Button sredniBtn;
     public Button latwyBtn;
+    public Button authorBtn;
     private Stage primaryStage;
 
 
@@ -95,5 +96,14 @@ public class MainViewController implements Initializable {
     }
 
 
+    public Stage showAuthors(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));;
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+        loader.setResources(bundle);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
+        return stage;
 
+    }
 }
