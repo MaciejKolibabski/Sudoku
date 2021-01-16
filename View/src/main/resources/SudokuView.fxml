@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="722.0" style="-fx-background-color: #3b635d;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SudokuViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="722.0" style="-fx-background-color: #3b635d;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SudokuViewController">
     <center>
         <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" prefHeight="379.0" prefWidth="466.0" style="-fx-background-color: #add7db;" BorderPane.alignment="CENTER_LEFT">
             <columnConstraints>
@@ -58,11 +52,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant>
-                     <color>
-                        <Color blue="0.30103799700737" green="0.9184210300445557" red="0.8463930487632751" />
-                     </color>
-                  </Light.Distant>
+                  <Light.Distant />
                </light>
             </Lighting>
          </effect>
@@ -79,11 +69,7 @@
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant>
-                     <color>
-                        <Color blue="0.353767067193985" green="0.353767067193985" red="0.8342105150222778" />
-                     </color>
-                  </Light.Distant>
+                  <Light.Distant />
                </light>
             </Lighting>
          </effect>

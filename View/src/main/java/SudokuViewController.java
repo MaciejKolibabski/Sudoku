@@ -1,9 +1,5 @@
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Random;
@@ -19,15 +15,20 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.first.firstjava.FileSudokuBoardDao;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
 
 public class SudokuViewController implements Initializable {
+
+    private static final Logger log = LoggerFactory.getLogger(SudokuViewController.class);
+
     private SudokuBoard board;
     public GridPane grid;
     private List<List<SudokuField>> fields;
     TextField[][] labels = new TextField[9][9];
-
 
 
 
@@ -77,8 +78,9 @@ public class SudokuViewController implements Initializable {
 
             }
         }
-        System.out.println(grid.getChildren());
         bindToCurrentFields();
+        log.info("WARTOSCI: \n" + board);
+
     }
 
     public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
@@ -135,61 +137,73 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) {
+    public void readfromfile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
+        log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
 
-        try (FileInputStream fis = new FileInputStream(file);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            var board = (SudokuBoard) ois.readObject();
-            fields = board.getBoard();
+        try {
+            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
+            board = fileSudokuBoardDao.read();
+        } catch (MyRntExcpt | MyIoe e) {
+            e.printStackTrace();
+        }
+
+            //        try (FileInputStream fis = new FileInputStream(file);
+            //             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            //
+            //            var board = (SudokuBoard) ois.readObject();
+            //            fields = board.getBoard();
 
             bindToCurrentFields();
 
-            System.out.println("Po odczycie " + board);
-        } catch (IOException | ClassNotFoundException ex) {
-            System.out.println("IOException");
-        }
+            log.info("Po odczycie " + board);
 
-        TextField[][] labels = new TextField[9][9];
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (fields.get(j).get(i).getFieldValue() != 0) {
-                    labels[i][j] = new TextField(Integer.toString((
-                            fields.get(j).get(i).getFieldValue())));
-                } else {
-                    labels[i][j] = new TextField("");
+            TextField[][] labels = new TextField[9][9];
+
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (fields.get(j).get(i).getFieldValue() != 0) {
+                        labels[i][j] = new TextField(Integer.toString((
+                                fields.get(j).get(i).getFieldValue())));
+                    } else {
+                        labels[i][j] = new TextField("");
+                    }
+
+                    labels[i][j].setAlignment(Pos.CENTER);
+                    labels[i][j].setPrefHeight(100);
+                    labels[i][j].setPrefWidth(100);
+                    grid.add(labels[i][j], i, j);
+
                 }
-
-                labels[i][j].setAlignment(Pos.CENTER);
-                labels[i][j].setPrefHeight(100);
-                labels[i][j].setPrefWidth(100);
-                grid.add(labels[i][j], i, j);
-
             }
+
         }
 
-    }
 
-    public void writetofile(ActionEvent actionEvent) {
+    public void writetofile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
 
-        System.out.println("Zapis " + board);
-
+        log.info("Zapis do pliku " + board);
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showSaveDialog(new Stage());
 
-        try (FileOutputStream fos = new FileOutputStream(file);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        try {
+            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
+            fileSudokuBoardDao.write(board);
+        } catch (MyRntExcpt | MyIoe ex) {
+            System.out.println("WX");
 
-            oos.writeObject(board);
-
-        } catch (IOException ex) {
-            System.out.println("IOException");
         }
-
-
+        //        try (FileOutputStream fos = new FileOutputStream(file);
+        //             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        //
+        //            oos.writeObject(board);
+        //
+        //        } catch (IOException ex) {
+        //            System.out.println("IOException");
+        //        }
     }
 
 
