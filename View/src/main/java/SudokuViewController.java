@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Random;
@@ -136,7 +137,7 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) throws MyRntExcpt {
+    public void readfromfile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
         log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
@@ -145,7 +146,7 @@ public class SudokuViewController implements Initializable {
         try {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             board = fileSudokuBoardDao.read();
-        } catch (MyRntExcpt e) {
+        } catch (MyRntExcpt | MyIoe e) {
             e.printStackTrace();
         }
 
@@ -182,17 +183,16 @@ public class SudokuViewController implements Initializable {
         }
 
 
-    public void writetofile(ActionEvent actionEvent) throws MyRntExcpt {
+    public void writetofile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
 
         log.info("Zapis do pliku " + board);
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showSaveDialog(new Stage());
 
         try {
-
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             fileSudokuBoardDao.write(board);
-        } catch (MyRntExcpt ex) {
+        } catch (MyRntExcpt | MyIoe ex) {
             System.out.println("WX");
 
         }
