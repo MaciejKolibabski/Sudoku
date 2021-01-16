@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import pl.first.firstjava.FileSudokuBoardDao;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
+import pl.first.firstjava.wyjatki.MyIoeXception;
 
 public class SudokuViewController implements Initializable {
 
@@ -137,16 +138,16 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
+    public void readfromfile(ActionEvent actionEvent) throws IOException {
         log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
-
-
         try {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             board = fileSudokuBoardDao.read();
-        } catch (MyRntExcpt | MyIoe e) {
+        } catch (MyRntExcpt e) {
+            e.printStackTrace();
+        } catch (MyIoe e) {
             e.printStackTrace();
         }
 

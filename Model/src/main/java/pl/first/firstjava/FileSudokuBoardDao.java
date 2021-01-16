@@ -2,13 +2,15 @@ package pl.first.firstjava;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import pl.first.firstjava.wyjatki.MyIoeXception;
-import pl.first.firstjava.wyjatki.MyIoeXception;
 import pl.first.firstjava.wyjatki.MyRntExc;
+
+
 
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard> {
@@ -26,7 +28,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
                          new ObjectInputStream(new FileInputStream(this.fileName))) {
                 obj = (SudokuBoard) objectInputStream.readObject();
                 return obj;
-            } catch (ClassNotFoundException | MyIoeXception e) {
+            } catch (ClassNotFoundException | MyIoeXception | FileNotFoundException e) {
                 throw new MyRntExc(e);
             }
 

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -109,15 +110,24 @@ public class MainViewController implements Initializable {
     }
 
 
-    public Stage showAuthors(ActionEvent actionEvent) throws IOException {
-        log.info("Pokazanie autorow");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));;
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-        loader.setResources(bundle);
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-        return stage;
+    public void showAuthors(ActionEvent actionEvent) throws IOException {
+
+        ResourceBundle listBundle = ResourceBundle.getBundle("Authors");
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(" ");
+        alert.setHeaderText("Authors");
+        alert.setContentText(" ");
+        alert.setContentText(listBundle.getObject("Author1")
+                + "\n" + listBundle.getObject("Author2"));
+        alert.show();
+        //        log.info("Pokazanie autorow");
+        //        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));;
+        //        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+        //        loader.setResources(bundle);
+        //        Stage stage = new Stage(StageStyle.DECORATED);
+        //        stage.setScene(new Scene(loader.load()));
+        //        stage.show();
+        //        return stage;
     }
 
 }
