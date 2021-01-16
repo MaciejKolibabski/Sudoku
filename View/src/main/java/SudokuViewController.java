@@ -21,7 +21,9 @@ import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.first.firstjava.FileSudokuBoardDao;
 import pl.first.firstjava.SudokuBoard;
+import pl.first.firstjava.SudokuBoardDaoFactory;
 import pl.first.firstjava.SudokuField;
 
 public class SudokuViewController implements Initializable {
@@ -140,60 +142,76 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) {
-        log.info("Zapis do pliku");
-
+    public void readfromfile(ActionEvent actionEvent) throws Exception {
+        log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
 
-        try (FileInputStream fis = new FileInputStream(file);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
 
-            var board = (SudokuBoard) ois.readObject();
-            fields = board.getBoard();
+        try {
+            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
+            board = fileSudokuBoardDao.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+            //        try (FileInputStream fis = new FileInputStream(file);
+            //             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            //
+            //            var board = (SudokuBoard) ois.readObject();
+            //            fields = board.getBoard();
 
             bindToCurrentFields();
 
-            System.out.println("Po odczycie " + board);
-        } catch (IOException | ClassNotFoundException ex) {
-            System.out.println("IOException");
-        }
+            log.info("Po odczycie " + board);
 
-        TextField[][] labels = new TextField[9][9];
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (fields.get(j).get(i).getFieldValue() != 0) {
-                    labels[i][j] = new TextField(Integer.toString((
-                            fields.get(j).get(i).getFieldValue())));
-                } else {
-                    labels[i][j] = new TextField("");
+            TextField[][] labels = new TextField[9][9];
+
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (fields.get(j).get(i).getFieldValue() != 0) {
+                        labels[i][j] = new TextField(Integer.toString((
+                                fields.get(j).get(i).getFieldValue())));
+                    } else {
+                        labels[i][j] = new TextField("");
+                    }
+
+                    labels[i][j].setAlignment(Pos.CENTER);
+                    labels[i][j].setPrefHeight(100);
+                    labels[i][j].setPrefWidth(100);
+                    grid.add(labels[i][j], i, j);
+
                 }
-
-                labels[i][j].setAlignment(Pos.CENTER);
-                labels[i][j].setPrefHeight(100);
-                labels[i][j].setPrefWidth(100);
-                grid.add(labels[i][j], i, j);
-
             }
+
         }
 
-    }
 
     public void writetofile(ActionEvent actionEvent) {
 
-        System.out.println("Zapis " + board);
+        log.info("Zapis do pliku " + board);
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showSaveDialog(new Stage());
 
-        try (FileOutputStream fos = new FileOutputStream(file);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        try {
 
-            oos.writeObject(board);
+            FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
+            fileSudokuBoardDao.write(board);
+        } catch (RuntimeException ex) {
+            System.out.println("WX");
 
-        } catch (IOException ex) {
-            System.out.println("IOException");
         }
+
+
+        //        try (FileOutputStream fos = new FileOutputStream(file);
+        //             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        //
+        //            oos.writeObject(board);
+        //
+        //        } catch (IOException ex) {
+        //            System.out.println("IOException");
+        //        }
     }
 
 

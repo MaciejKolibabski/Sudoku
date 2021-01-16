@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 public class SudokuBoardDaoFactory {
 
-    public static Dao getFileDao(File fileName) throws FileNotFoundException {
+    public static Dao<SudokuBoard> getFileDao(File fileName) throws FileNotFoundException {
         return new FileSudokuBoardDao(fileName);
     }
 
