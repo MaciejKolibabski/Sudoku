@@ -4,7 +4,9 @@ import pl.first.firstjava.SudokuBoard;
 
 public class DifficultChoice {
 
-    public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
+    SudokuBoard tab;
+
+    public SudokuBoard deleteRandom(int deleteFiedls) {
         Random rand = new Random();
         while (deleteFiedls > 0) {
             int x = rand.nextInt(9);

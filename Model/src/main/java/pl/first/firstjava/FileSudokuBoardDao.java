@@ -1,5 +1,8 @@
 package pl.first.firstjava;
 
+import pl.first.firstjava.wyjatki.MyIOEXception;
+import pl.first.firstjava.wyjatki.MyRntEXC;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,14 +21,14 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
 
 
         @Override
-        public SudokuBoard read() {
+        public SudokuBoard read() throws IOException {
             SudokuBoard obj = null;
             try (ObjectInputStream objectInputStream =
                          new ObjectInputStream(new FileInputStream(this.fileName))) {
                 obj = (SudokuBoard) objectInputStream.readObject();
                 return obj;
-            } catch (ClassNotFoundException | IOException e) {
-                throw new RuntimeException(e);
+            } catch (ClassNotFoundException | MyIOEXception e) {
+                throw new MyRntEXC(e);
             }
 
         }
@@ -33,12 +36,12 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
 
 
         @Override
-        public void write(SudokuBoard obj) {
+        public void write(SudokuBoard obj) throws IOException {
             try (ObjectOutputStream outputStream =
                          new ObjectOutputStream(new FileOutputStream(this.fileName))) {
                 outputStream.writeObject(obj);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (MyIOEXception e) {
+                throw new MyRntEXC(e);
             }
         }
 

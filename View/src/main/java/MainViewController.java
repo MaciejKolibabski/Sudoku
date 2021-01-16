@@ -28,6 +28,7 @@ public class MainViewController implements Initializable {
     private Stage primaryStage;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -110,7 +111,6 @@ public class MainViewController implements Initializable {
 
     public Stage showAuthors(ActionEvent actionEvent) throws IOException {
         log.info("Pokazanie autorow");
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));;
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         loader.setResources(bundle);
@@ -118,6 +118,6 @@ public class MainViewController implements Initializable {
         stage.setScene(new Scene(loader.load()));
         stage.show();
         return stage;
-
     }
+
 }
