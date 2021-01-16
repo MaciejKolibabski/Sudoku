@@ -19,10 +19,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
 
 public class SudokuViewController implements Initializable {
+
+    private static final Logger log = LoggerFactory.getLogger(SudokuViewController.class);
 
     private SudokuBoard board;
     public GridPane grid;
@@ -77,8 +81,9 @@ public class SudokuViewController implements Initializable {
 
             }
         }
-        System.out.println(grid.getChildren());
         bindToCurrentFields();
+        log.info("WARTOSCI: \n" + board);
+
     }
 
     public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
@@ -136,6 +141,8 @@ public class SudokuViewController implements Initializable {
     }
 
     public void readfromfile(ActionEvent actionEvent) {
+        log.info("Zapis do pliku");
+
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
 

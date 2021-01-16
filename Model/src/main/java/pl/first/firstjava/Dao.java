@@ -1,11 +1,11 @@
 package pl.first.firstjava;
 
 import java.io.IOException;
-import java.io.Serializable;
+
 
 public interface Dao<T> extends AutoCloseable {
-    T read();
+    T read() throws ClassNotFoundException, IOException;
 
-    void write(T obj);
+    void write(T obj) throws Exception;
 
 }

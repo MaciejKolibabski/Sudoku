@@ -1,6 +1,6 @@
+import java.util.Random;
 import pl.first.firstjava.SudokuBoard;
 
-import java.util.Random;
 
 public class DifficultChoice {
 
