@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import pl.first.firstjava.FileSudokuBoardDao;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
-import pl.first.firstjava.wyjatki.MyIoeXception;
 
 public class SudokuViewController implements Initializable {
 
@@ -43,6 +42,7 @@ public class SudokuViewController implements Initializable {
 
 
     SudokuBoard fillBoard() {
+        log.info("Plansza jest uzupelniana");
 
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
@@ -58,6 +58,7 @@ public class SudokuViewController implements Initializable {
 
 
     public void showSudoku(int deleteFiedls) {
+        log.info("Pokazanie planszy sudoku");
 
         fillBoard();
         deleteRandom(board,deleteFiedls);
@@ -146,9 +147,9 @@ public class SudokuViewController implements Initializable {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             board = fileSudokuBoardDao.read();
         } catch (MyRntExcpt e) {
-            e.printStackTrace();
+            log.warn("RUNTIME EXC");
         } catch (MyIoe e) {
-            e.printStackTrace();
+            log.warn("IOEXC");
         }
 
             //        try (FileInputStream fis = new FileInputStream(file);
@@ -194,7 +195,7 @@ public class SudokuViewController implements Initializable {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             fileSudokuBoardDao.write(board);
         } catch (MyRntExcpt | MyIoe ex) {
-            System.out.println("WX");
+           log.warn("Exception");
 
         }
         //        try (FileOutputStream fos = new FileOutputStream(file);
