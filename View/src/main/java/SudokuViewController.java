@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import Exceptions.MyIoe;
+import Exceptions.MyRntExcpt;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import pl.first.firstjava.FileSudokuBoardDao;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
+import pl.first.firstjava.wyjatki.MyIoeXception;
 
 public class SudokuViewController implements Initializable {
 
@@ -139,20 +143,18 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) throws IOException {
+    public void readfromfile(ActionEvent actionEvent) {
         log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
         try {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             board = fileSudokuBoardDao.read();
-        } catch (MyRntExcpt e) {
-            log.warn("RUNTIME EXC");
-        } catch (MyIoe e) {
+        } catch (MyIoeXception e) {
             log.warn("IOEXC");
         }
 
-            //        try (FileInputStream fis = new FileInputStream(file);
+        //        try (FileInputStream fis = new FileInputStream(file);
             //             ObjectInputStream ois = new ObjectInputStream(fis)) {
             //
             //            var board = (SudokuBoard) ois.readObject();
@@ -185,7 +187,7 @@ public class SudokuViewController implements Initializable {
         }
 
 
-    public void writetofile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
+    public void writetofile(ActionEvent actionEvent) {
 
         log.info("Zapis do pliku " + board);
         FileChooser filechoose = new FileChooser();
@@ -194,8 +196,8 @@ public class SudokuViewController implements Initializable {
         try {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             fileSudokuBoardDao.write(board);
-        } catch (MyRntExcpt | MyIoe ex) {
-           log.warn("Exception");
+        } catch (MyIoeXception e) {
+           log.warn("Exception, nie można zapisać do pliku");
 
         }
         //        try (FileOutputStream fos = new FileOutputStream(file);
@@ -210,4 +212,3 @@ public class SudokuViewController implements Initializable {
 
 
 }
-
