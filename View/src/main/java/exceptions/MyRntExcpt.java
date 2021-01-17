@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class MyRntExcpt extends RuntimeException {
     public MyRntExcpt(Throwable cause) {

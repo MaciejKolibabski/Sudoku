@@ -1,12 +1,8 @@
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-
-import Exceptions.MyIoe;
-import Exceptions.MyRntExcpt;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.event.ActionEvent;
@@ -34,6 +30,8 @@ public class SudokuViewController implements Initializable {
     private List<List<SudokuField>> fields;
     TextField[][] labels = new TextField[9][9];
 
+    DifficultChoice difficultChoice = new DifficultChoice();
+
 
 
     @Override
@@ -46,8 +44,6 @@ public class SudokuViewController implements Initializable {
 
 
     SudokuBoard fillBoard() {
-        log.info("Plansza jest uzupelniana");
-
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -56,8 +52,10 @@ public class SudokuViewController implements Initializable {
         }
         SudokuBoard board = new SudokuBoard();
         board.solveGame();
+        log.info("Plansza jest uzupelniana");
         this.board = board;
         return board;
+
     }
 
 
@@ -65,7 +63,7 @@ public class SudokuViewController implements Initializable {
         log.info("Pokazanie planszy sudoku");
 
         fillBoard();
-        deleteRandom(board,deleteFiedls);
+        difficultChoice.deleteRandom(board,deleteFiedls);
 
 
 
@@ -88,20 +86,6 @@ public class SudokuViewController implements Initializable {
         log.info("WARTOSCI: \n" + board);
 
     }
-
-    public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
-        Random rand = new Random();
-        while (deleteFiedls > 0) {
-            int x = rand.nextInt(9);
-            int y = rand.nextInt(9);
-            if (tab.get(x,y) != 0) {
-                tab.set(x, y, 0);
-                deleteFiedls--;
-            }
-        }
-        return tab;
-    }
-
 
     private void bindToCurrentFields() {
         class SudokuFieldStringConverter extends IntegerStringConverter {
@@ -154,7 +138,7 @@ public class SudokuViewController implements Initializable {
             log.warn("IOEXC");
         }
 
-        //        try (FileInputStream fis = new FileInputStream(file);
+            //        try (FileInputStream fis = new FileInputStream(file);
             //             ObjectInputStream ois = new ObjectInputStream(fis)) {
             //
             //            var board = (SudokuBoard) ois.readObject();

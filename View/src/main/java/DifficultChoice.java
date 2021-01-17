@@ -1,12 +1,12 @@
 import java.util.Random;
 import pl.first.firstjava.SudokuBoard;
+import pl.first.firstjava.SudokuField;
 
 
 public class DifficultChoice {
 
-    SudokuBoard tab;
 
-    public SudokuBoard deleteRandom(int deleteFiedls) {
+    public SudokuBoard deleteRandom(SudokuBoard tab, int deleteFiedls) {
         Random rand = new Random();
         while (deleteFiedls > 0) {
             int x = rand.nextInt(9);
