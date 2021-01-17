@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.first.firstjava.BacktrackingSudokuSolver;
 import pl.first.firstjava.SudokuBoard;
 import pl.first.firstjava.SudokuField;
@@ -18,10 +20,12 @@ import pl.first.firstjava.SudokuField;
 
 public class App extends Application {
     MainViewController mainViewController;
+    private static final Logger log = LoggerFactory.getLogger(App.class);
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        log.info("Rozpoczynamy sudoku");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainView.fxml"), bundle);
         Parent root = loader.load();

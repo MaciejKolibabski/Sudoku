@@ -42,6 +42,7 @@ public class SudokuViewController implements Initializable {
 
 
     SudokuBoard fillBoard() {
+        log.info("Plansza jest uzupelniana");
 
         SudokuField[][] fields = new SudokuField[9][9];
         for (int i = 0; i < 9; i++) {
@@ -57,6 +58,7 @@ public class SudokuViewController implements Initializable {
 
 
     public void showSudoku(int deleteFiedls) {
+        log.info("Pokazanie planszy sudoku");
 
         fillBoard();
         deleteRandom(board,deleteFiedls);
@@ -137,17 +139,17 @@ public class SudokuViewController implements Initializable {
 
     }
 
-    public void readfromfile(ActionEvent actionEvent) throws MyRntExcpt, IOException {
+    public void readfromfile(ActionEvent actionEvent) throws IOException {
         log.info("Odczyt z pliku");
         FileChooser filechoose = new FileChooser();
         File file = filechoose.showOpenDialog(new Stage());
-
-
         try {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             board = fileSudokuBoardDao.read();
-        } catch (MyRntExcpt | MyIoe e) {
-            e.printStackTrace();
+        } catch (MyRntExcpt e) {
+            log.warn("RUNTIME EXC");
+        } catch (MyIoe e) {
+            log.warn("IOEXC");
         }
 
             //        try (FileInputStream fis = new FileInputStream(file);
@@ -193,7 +195,7 @@ public class SudokuViewController implements Initializable {
             FileSudokuBoardDao fileSudokuBoardDao = new FileSudokuBoardDao(file);
             fileSudokuBoardDao.write(board);
         } catch (MyRntExcpt | MyIoe ex) {
-            System.out.println("WX");
+           log.warn("Exception");
 
         }
         //        try (FileOutputStream fos = new FileOutputStream(file);

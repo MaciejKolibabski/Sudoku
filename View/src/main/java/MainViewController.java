@@ -8,12 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 
 public class MainViewController implements Initializable {
@@ -26,7 +26,6 @@ public class MainViewController implements Initializable {
     public Button latwyBtn;
     public Button authorBtn;
     private Stage primaryStage;
-
 
 
     @Override
@@ -51,7 +50,8 @@ public class MainViewController implements Initializable {
     public Stage applySredni(ActionEvent actionEvent) throws IOException {
         log.info("Wybrales poziom sredni");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SudokuView.fxml"));;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SudokuView.fxml"));
+        ;
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         loader.setResources(bundle);
         Stage stage = new Stage(StageStyle.DECORATED);
@@ -87,7 +87,7 @@ public class MainViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"), bundle);
         Stage stage = new Stage(StageStyle.DECORATED);
         Parent root = loader.load();
-        stage.setScene(new Scene(root, 700,700));
+        stage.setScene(new Scene(root, 700, 700));
         MainViewController controller = loader.getController();
         controller.initData(stage);
         stage.show();
@@ -109,15 +109,27 @@ public class MainViewController implements Initializable {
     }
 
 
-    public Stage showAuthors(ActionEvent actionEvent) throws IOException {
-        log.info("Pokazanie autorow");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));;
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-        loader.setResources(bundle);
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-        return stage;
+    public void showAuthors(ActionEvent actionEvent) throws IOException {
+        log.info("Wyswietlenie autorow");
+        ResourceBundle listBundle = ResourceBundle.getBundle("Authors");
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(" ");
+        alert.setHeaderText("Authors");
+        alert.setContentText(" ");
+        alert.setContentText(listBundle.getObject("a")
+                + "\n" + listBundle.getObject("b"));
+        alert.show();
+        log.info("Autorzy wyswietleni");
+
+
+        //        log.info("Pokazanie autorow");
+        //        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthorsView.fxml"));
+        //        ResourceBundle bundle = ResourceBundle.getBundle("Authors");
+        //        loader.setResources(bundle);
+        //        Stage stage = new Stage(StageStyle.DECORATED);
+        //        stage.setScene(new Scene(loader.load()));
+        //        stage.show();
+        //        return stage;
     }
 
 }
